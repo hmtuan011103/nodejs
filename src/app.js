@@ -1,6 +1,7 @@
-const express = require('express');
-const app = express();
+// ES modules (ES6+)
+import express from "express";
 
+const app = express();
 
 // Init middleware
 
@@ -10,4 +11,4 @@ const app = express();
 
 // Handle errors
 
-module.exports = app
+export default app;
