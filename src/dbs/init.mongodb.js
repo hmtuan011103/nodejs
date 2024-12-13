@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
+import { countConnect } from '../helpers/check.connect.js';
 
 const connectString = `mongodb://localhost:27017/shopDev`;
+const MAX_POOL_SIZE = 50;
 
 class Database {
     
@@ -15,9 +17,14 @@ class Database {
             mongoose.set('debug', { color: true });
         }
 
-        mongoose.connect(connectString)
-        .then( _ => console.log(`Connected Mongodb success Pro`) )
-        .catch( err => console.log(`Error Connect!`) );
+        mongoose.connect(connectString, {
+            maxPoolSize: MAX_POOL_SIZE
+        })
+        .then(_ => {
+            console.log(`Connected Mongodb success Pro`);
+            countConnect();
+        })
+        .catch(err => console.log(`Error Connect!`));
     }
 
     static getInstance() {
