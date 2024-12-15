@@ -3,6 +3,7 @@ import os from 'os';
 import process from 'process';
 
 const _SECONDS = 5000;
+const _KB = 1024;
 
 // Count connect
 const countConnect = () => {
@@ -22,7 +23,7 @@ const checkOverload = () => {
 
         console.log(`-------------`);
         console.log(`Active connections: ${numConnection}`);
-        console.log(`Memory usage: ${memoryUsage / 1024 / 1024} MB`);
+        console.log(`Memory usage: ${memoryUsage / _KB / _KB} MB`);
 
         if (numConnection > maxConnections) {
             console.log(`Connection overload detected!`);
