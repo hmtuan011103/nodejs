@@ -21,7 +21,7 @@ const dev = {
         host: process.env.DEV_DB_HOST || DEV_DB_HOST,
         port: process.env.DEV_DB_PORT || DEV_DB_PORT,
         name: process.env.DEV_DB_NAME || DEV_DB_NAME
-    }
+    } 
 }
 
 const pro = {

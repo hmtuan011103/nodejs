@@ -6,9 +6,6 @@ import config from '../configs/config.mongodb.js';
 const connectString = `mongodb://${config.db.host}:${config.db.port}/${config.db.name}`;
 const MAX_POOL_SIZE = 50;
 
-console.log(connectString);
-
-
 class Database {
     
     constructor() {
