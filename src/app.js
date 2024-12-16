@@ -5,6 +5,7 @@ import helmet from "helmet";
 import compression from "compression";
 import mongoose from "./dbs/init.mongodb.js"
 import { checkOverload } from "./helpers/check.connect.js";
+import router from "./routes/index.js";
 
 const app = express();
 
@@ -18,13 +19,7 @@ app.use(compression());
 // checkOverload();
 
 // Init routes
-app.get('/', (req, res, next) => {
-    // const strCompress = 'Hello Fantipjs';
-    return res.status(200).json({
-        message: 'Welcome Fantipjs',
-        // metadata: strCompress.repeat(100000)
-    });
-});
+app.use('/', router);
 
 // Handle errors
 
