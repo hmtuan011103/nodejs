@@ -23,3 +23,5 @@
       + Kiểm tra số người connect đến database, bằng cách viết 1 function trong helper folder.
       + Thông báo khi server quá tải.
       + Sử dụng poolSize trong hệ thống: poolSize là tái sử dụng kết nối được duy trì bởi database, cải thiện hiệu suất, giảm chi phí.
+4. Setup env và file configs
+   + Cài đặt dotenv: npm i dotenv

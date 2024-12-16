@@ -1,8 +1,13 @@
 import mongoose from 'mongoose';
 import { countConnect } from '../helpers/check.connect.js';
+import config from '../configs/config.mongodb.js';
 
-const connectString = `mongodb://localhost:27017/shopDev`;
+
+const connectString = `mongodb://${config.db.host}:${config.db.port}/${config.db.name}`;
 const MAX_POOL_SIZE = 50;
+
+console.log(connectString);
+
 
 class Database {
     
