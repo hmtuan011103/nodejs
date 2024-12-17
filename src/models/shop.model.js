@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-const DOCUMENT_NAME = 'Shop';;
+const DOCUMENT_NAME = 'Shop';
 const COLLECTION_NAME = 'Shops';
 
 // Declare the Schema of the Mongo model

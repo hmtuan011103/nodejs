@@ -1,10 +1,11 @@
+import * as AccessService from "../services/access.service.js";
+
 const signUp = async (req, res, next) => {
     try {
         console.log(`[P]::signUp::`, req.body);
-        return res.status(201).json({
-            code: '2001',
-            metadata: {userId: 1}
-        });
+        return res.status(201).json(
+            await AccessService.signUp(req.body)
+        );
     } catch (error) {
         next(error);
     }
@@ -18,4 +19,4 @@ const logout = async (req, res, next) => {
     // logic here
 }
 
-export { signUp, signIn, logout}
+export { signUp, signIn, logout};
