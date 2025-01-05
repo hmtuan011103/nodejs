@@ -40,43 +40,69 @@ const signUp = async ({
 
         if (newShop) {
             // created privateKey, publicKey
-            const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
-                modulusLength: 4096,
-                publicKeyEncoding: {
-                    type: 'pkcs1', // Public Key Crypto Graphy Standards
-                    format: 'pem'
-                },
-                privateKeyEncoding: {
-                    type: 'pkcs1',
-                    format: 'pem'
-                }
-            });
+            // const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
+            //     modulusLength: 4096,
+            //     publicKeyEncoding: {
+            //         type: 'pkcs1', // Public Key Crypto Graphy Standards
+            //         format: 'pem'
+            //     },
+            //     privateKeyEncoding: {
+            //         type: 'pkcs1',
+            //         format: 'pem'
+            //     }
+            // });
+            const privateKey = crypto.randomBytes(64).toString('hex');
+            const publicKey = crypto.randomBytes(64).toString('hex');
 
             console.log({privateKey, publicKey}); // Save collection KeyStore
 
-            const publicKeyString = await KeyTokenService.createKeyToken({
+            // const publicKeyString = await KeyTokenService.createKeyToken({
+            //     userId: newShop._id,
+            //     publicKey
+            // });
+
+            // const publicKeyString = await KeyTokenService.createKeyToken({
+            //     userId: newShop._id,
+            //     publicKey,
+            //     privateKey
+            // });
+
+            const keyStore = await KeyTokenService.createKeyToken({
                 userId: newShop._id,
-                publicKey
+                publicKey,
+                privateKey
             });
 
-            if (!publicKeyString) {
+
+            // if (!publicKeyString) {
+            //     return {
+            //         code: 'xxx',
+            //         message: 'publicKeyString error',
+            //     }
+            // }
+
+            if (!keyStore) {
                 return {
                     code: 'xxx',
-                    message: 'publicKeyString error',
+                    message: 'keyStore error',
                 }
             }
 
-            console.log(`publicKeyString::`, publicKeyString);
+            // console.log(`publicKeyString::`, publicKeyString);
             
-            const publicKeyObject = crypto.createPublicKey(publicKeyString);
+            // const publicKeyObject = crypto.createPublicKey(publicKeyString);
 
-            console.log(`publicKeyObject::`, publicKeyObject);
+            // console.log(`publicKeyObject::`, publicKeyObject);
 
             // created token pair
+            // const tokens = await createTokenPair({
+            //     userId: newShop._id,
+            //     email
+            // }, publicKeyString, privateKey);
             const tokens = await createTokenPair({
                 userId: newShop._id,
                 email
-            }, publicKeyString, privateKey);
+            }, publicKey, privateKey);
 
             console.log(`Created token success::`, tokens);
 
